@@ -1,4 +1,4 @@
-## Calidad y seguridad del código fuente mediante Sonar Cloud
+## Calidad y seguridad del código fuente
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin&metric=alert_status)](https://sonarcloud.io/dashboard?id=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin)
 
