@@ -28,8 +28,6 @@ No se han realizado tests ya que se esta haciendo uso de *yargs* para interactua
 
 Considerando el ejemplo de código fuente que se nos ha proporcionado para realizar una traza de ejecución del programa, mostrando el contenido de la pila de llamadas, el registro de eventos de la API y la cola de manejadores de Node.js, además de lo que muestra la consola.
 
-Vamos a tener en cuenta que se realizan dos modificaciones del fichero helloworld.txt a lo largo de la ejecucion.
-
 ## Codigo
 
 ```
@@ -58,7 +56,130 @@ if (process.argv.length !== 3) {
 }
 ```
 
+Vamos a tener en cuenta que se realizan dos modificaciones del fichero helloworld.txt a lo largo de la ejecucion.
 
+* Caso 1: No se le pasa un nombre de fichero
+
+Se comprueba que el nombre del fichero no es mayor que 3 en *if (process.argv.length !== 3)* ya que no se le esta pasando el argumento.
+
+```
+Pila de llamadas: annonymus()
+Registro de eventos: -
+Cola: -
+Consola: Please, specify a file
+```
+
+* Caso 2: Se le pasa un nombre de fichero valido
+
+En este caso estamos especificando el argumento, por lo que se continuará con la ejecución del programa colocando el metodo *access* en la pila de llamadas. 
+
+```
+Pila de llamadas: err => {} || access()
+Registro de eventos: -
+Cola: -
+Consola: -
+```
+
+Seguidamente se coloca en el registro de eventos por ser un metodo asincrono.
+
+```
+Pila de llamadas: -
+Registro de eventos: err => {}
+Cola: -
+Consola: -
+```
+
+En el momento en el que *access* compruebe si existe el fichero se manda a la cola.
+
+```
+Pila de llamadas: -
+Registro de eventos: -
+Cola: err => {}
+Consola: -
+```
+
+Se introducen y ejecutan los procesos de la cola en la pila de llamadas.
+
+En caso de hacer un error:
+
+```
+Pila de llamadas: err => {.....}
+Registro de eventos: -
+Cola: -
+Consola: File ${filename} does not exist
+```
+
+En caso de que no ocurra ningun error:
+
+```
+Pila de llamadas: err => {.....}
+Registro de eventos: -
+Cola: -
+Consola: Starting to watch file ${filename}
+```
+
+A continuacion se crea el *watcher* y se comienza a detectar los cambios.
+
+```
+Pila de llamadas: watcher.on('change', () => {} || err => {.....}
+Registro de eventos: -
+Cola: -
+Consola: -
+```
+
+Se introduce en el registro de eventos hasta que se produzca un cambio.
+
+```
+Pila de llamadas: - || err => {.....}
+Registro de eventos: watcher.on('change', () => {}
+Cola: -
+Consola: -
+```
+
+```
+Pila de llamadas: - || err => {.....}
+Registro de eventos: watcher.on('change', () => {}
+Cola: -
+Consola: File ${filename} is no longer watched
+```
+
+Se queda esperando y cuando se produce un cambio.
+
+```
+Pila de llamadas: - 
+Registro de eventos: watcher.on('change', () => {}
+Cola: -
+Consola: -
+```
+
+```
+Pila de llamadas: - 
+Registro de eventos: watcher.on('change', () => {}
+Cola: console.log(`File ${filename} has been modified somehow`)
+Consola: -
+```
+
+```
+Pila de llamadas: - 
+Registro de eventos: watcher.on('change', () => {}
+Cola: -
+Consola: File ${filename} has been modified somehow
+```
+
+Para cada modificación se volvera a reproducir de la misma forma porque el *watch* se quedará dentro de el registro de eventos.
+
+* ¿Que hace la funcion access?
+
+Esta función permite obtener informacion de acceso del fichero.
+
+* ¿Para que sirve el objeto constants?
+
+Este determina el nivel de acceso, existiendo 4 tipos:
+
+- R_OK: si el fichero se puede leer
+- W_OK: si el fichero puede ser escrito
+- F_OK: si el fichero existe
+- X_OK: si el fichero se puede ejecutar
 
 # Ejercicio 2
 

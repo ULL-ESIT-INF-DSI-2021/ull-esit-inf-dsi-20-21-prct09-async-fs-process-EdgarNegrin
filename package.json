@@ -2,11 +2,11 @@
   "name": "github-actions-sonar-cloud",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/basicFunctions.js",
+  "main": "dist/ejercicio2/app.js",
   "scripts": {
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov",
-    "start": "tsc-watch --onSuccess \"node dist/basicFunctions.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/ejercicio2/app.js\"",
     "doc": "typedoc; touch ./docs/.nojekyll"
   },
   "keywords": [],
