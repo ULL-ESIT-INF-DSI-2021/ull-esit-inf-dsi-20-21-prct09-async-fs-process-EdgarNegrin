@@ -1,0 +1,633 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>github-actions-sonar-cloud</title>
+	<meta name="description" content="Documentation for github-actions-sonar-cloud">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">github-actions-sonar-cloud</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>github-actions-sonar-cloud</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#calidad-y-seguridad-del-código-fuente" id="calidad-y-seguridad-del-código-fuente" style="color: inherit; text-decoration: none;">
+					<h2>Calidad y seguridad del código fuente</h2>
+				</a>
+				<p><a href="https://sonarcloud.io/dashboard?id=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin"><img src="https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin&metric=alert_status" alt="Quality Gate Status"></a></p>
+				<p><a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin/actions/workflows/tests.yml"><img src="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct09-async-fs-process-EdgarNegrin/actions/workflows/tests.yml/badge.svg" alt="Tests"></a></p>
+				<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+					<h1>Introducción</h1>
+				</a>
+				<p>En esta practica seguiremos utilizando el lenguaje TypeScript para hacer uso de las diferentes APIs de callbacks que tiene Node.js disponibles para interactuar con el sistema de ficheros y la API asincrona para crear procesos.</p>
+				<a href="#objetivos" id="objetivos" style="color: inherit; text-decoration: none;">
+					<h1>Objetivos</h1>
+				</a>
+				<p>Los principales objetivos de esta practica son:</p>
+				<ul>
+					<li>Manejo del módulo <strong>yargs</strong> para implementar por linea de comandos.</li>
+					<li>Manejo de las APIs de <strong>callbacks</strong> y <strong>asincrona</strong> proporcionadas por Node.js para trabajar con el sistema de ficheros.</li>
+				</ul>
+				<a href="#creación-de-la-estructura" id="creación-de-la-estructura" style="color: inherit; text-decoration: none;">
+					<h1>Creación de la estructura</h1>
+				</a>
+				<p>Se ha comenzado la práctica creando la estructura del proyecto como se ha aprendido en las practicas anteriores. Siguiento el tutorial que se nos ha proporcionado. El ejercicio se ha realizado dentro del directorio src/, donde cada ejercicio tendrá su propio directorio. Se han activado las github Actions para mantener un control del código.</p>
+				<p>No se han realizado tests ya que se esta haciendo uso de <em>yargs</em> para interactuar a través de la linea de comandos.</p>
+				<a href="#ejercicio-1" id="ejercicio-1" style="color: inherit; text-decoration: none;">
+					<h1>Ejercicio 1</h1>
+				</a>
+				<a href="#funcionalidad" id="funcionalidad" style="color: inherit; text-decoration: none;">
+					<h2>Funcionalidad</h2>
+				</a>
+				<p>Considerando el ejemplo de código fuente que se nos ha proporcionado para realizar una traza de ejecución del programa, mostrando el contenido de la pila de llamadas, el registro de eventos de la API y la cola de manejadores de Node.js, además de lo que muestra la consola.</p>
+				<a href="#codigo" id="codigo" style="color: inherit; text-decoration: none;">
+					<h2>Codigo</h2>
+				</a>
+				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">access</span><span style="color: #000000">, </span><span style="color: #001080">constants</span><span style="color: #000000">, </span><span style="color: #001080">watch</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;fs&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000"> !== </span><span style="color: #098658">3</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Please, specify a file&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">filename</span><span style="color: #000000"> = </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">argv</span><span style="color: #000000">[</span><span style="color: #098658">2</span><span style="color: #000000">];</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">access</span><span style="color: #000000">(</span><span style="color: #001080">filename</span><span style="color: #000000">, </span><span style="color: #001080">constants</span><span style="color: #000000">.</span><span style="color: #0070C1">F_OK</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`File </span><span style="color: #0000FF">${</span><span style="color: #001080">filename</span><span style="color: #0000FF">}</span><span style="color: #A31515"> does not exist`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Starting to watch file </span><span style="color: #0000FF">${</span><span style="color: #001080">filename</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">      </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">watcher</span><span style="color: #000000"> = </span><span style="color: #795E26">watch</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">argv</span><span style="color: #000000">[</span><span style="color: #098658">2</span><span style="color: #000000">]);</span>
+
+<span style="color: #000000">      </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`File </span><span style="color: #0000FF">${</span><span style="color: #001080">filename</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has been modified somehow`</span><span style="color: #000000">);</span>
+<span style="color: #000000">      });</span>
+
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`File </span><span style="color: #0000FF">${</span><span style="color: #001080">filename</span><span style="color: #0000FF">}</span><span style="color: #A31515"> is no longer watched`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Vamos a tener en cuenta que se realizan dos modificaciones del fichero helloworld.txt a lo largo de la ejecucion.</p>
+				<ul>
+					<li>Caso 1: No se le pasa un nombre de fichero</li>
+				</ul>
+				<p>Se comprueba que el nombre del fichero no es mayor que 3 en <em>if (process.argv.length !== 3)</em> ya que no se le esta pasando el argumento.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: </span><span style="color: #795E26">annonymus</span><span style="color: #000000">()</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: -</span>
+<span style="color: #000000">Cola: -</span>
+<span style="color: #000000">Consola: </span><span style="color: #001080">Please</span><span style="color: #000000">, </span><span style="color: #001080">specify</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #001080">file</span>
+</code></pre>
+				<ul>
+					<li>Caso 2: Se le pasa un nombre de fichero valido</li>
+				</ul>
+				<p>En este caso estamos especificando el argumento, por lo que se continuará con la ejecución del programa colocando el metodo <em>access</em> en la pila de llamadas. </p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {} || </span><span style="color: #795E26">access</span><span style="color: #000000">()</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: -</span>
+<span style="color: #000000">Cola: -</span>
+<span style="color: #000000">Consola: -</span>
+</code></pre>
+				<p>Seguidamente se coloca en el registro de eventos por ser un metodo asincrono.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: -</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #000000">Cola: -</span>
+<span style="color: #000000">Consola: -</span>
+</code></pre>
+				<p>En el momento en el que <em>access</em> compruebe si existe el fichero se manda a la cola.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: -</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: -</span>
+<span style="color: #000000">Cola: </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #000000">Consola: -</span>
+</code></pre>
+				<p>Se introducen y ejecutan los procesos de la cola en la pila de llamadas.</p>
+				<p>En caso de hacer un error:</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {.....}</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: -</span>
+<span style="color: #000000">Cola: -</span>
+<span style="color: #000000">Consola: </span><span style="color: #001080">File</span><span style="color: #000000"> </span><span style="color: #001080">$</span><span style="color: #000000">{</span><span style="color: #001080">filename</span><span style="color: #000000">} </span><span style="color: #001080">does</span><span style="color: #000000"> </span><span style="color: #001080">not</span><span style="color: #000000"> </span><span style="color: #001080">exist</span>
+</code></pre>
+				<p>En caso de que no ocurra ningun error:</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {.....}</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: -</span>
+<span style="color: #000000">Cola: -</span>
+<span style="color: #000000">Consola: </span><span style="color: #001080">Starting</span><span style="color: #000000"> </span><span style="color: #001080">to</span><span style="color: #000000"> </span><span style="color: #001080">watch</span><span style="color: #000000"> </span><span style="color: #001080">file</span><span style="color: #000000"> </span><span style="color: #001080">$</span><span style="color: #000000">{</span><span style="color: #001080">filename</span><span style="color: #000000">}</span>
+</code></pre>
+				<p>A continuacion se crea el <em>watcher</em> y se comienza a detectar los cambios.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {} || </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {.....}</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> </span><span style="color: #001080">eventos</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: -</span>
+</code></pre>
+				<p>Se introduce en el registro de eventos hasta que se produzca un cambio.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: - || </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {.....}</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: -</span>
+</code></pre>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: - || </span><span style="color: #001080">err</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {.....}</span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: </span><span style="color: #001080">File</span><span style="color: #000000"> </span><span style="color: #001080">$</span><span style="color: #000000">{</span><span style="color: #001080">filename</span><span style="color: #000000">} </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">no</span><span style="color: #000000"> </span><span style="color: #001080">longer</span><span style="color: #000000"> </span><span style="color: #001080">watched</span>
+</code></pre>
+				<p>Se queda esperando y cuando se produce un cambio.</p>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: - </span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: -</span>
+</code></pre>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: - </span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`File </span><span style="color: #0000FF">${</span><span style="color: #001080">filename</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has been modified somehow`</span><span style="color: #000000">)</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: -</span>
+</code></pre>
+				<pre><code><span style="color: #001080">Pila</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> llamadas: - </span>
+<span style="color: #001080">Registro</span><span style="color: #000000"> </span><span style="color: #001080">de</span><span style="color: #000000"> eventos: </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {}</span>
+<span style="color: #001080">Cola</span><span style="color: #000000">: -</span>
+<span style="color: #001080">Consola</span><span style="color: #000000">: </span><span style="color: #001080">File</span><span style="color: #000000"> </span><span style="color: #001080">$</span><span style="color: #000000">{</span><span style="color: #001080">filename</span><span style="color: #000000">} </span><span style="color: #001080">has</span><span style="color: #000000"> </span><span style="color: #001080">been</span><span style="color: #000000"> </span><span style="color: #001080">modified</span><span style="color: #000000"> </span><span style="color: #001080">somehow</span>
+</code></pre>
+				<p>Para cada modificación se volvera a reproducir de la misma forma porque el <em>watch</em> se quedará dentro de el registro de eventos.</p>
+				<ul>
+					<li>¿Que hace la funcion access?</li>
+				</ul>
+				<p>Esta función permite obtener informacion de acceso del fichero.</p>
+				<ul>
+					<li>¿Para que sirve el objeto constants?</li>
+				</ul>
+				<p>Este determina el nivel de acceso, existiendo 4 tipos:</p>
+				<ul>
+					<li>R_OK: si el fichero se puede leer</li>
+					<li>W_OK: si el fichero puede ser escrito</li>
+					<li>F_OK: si el fichero existe</li>
+					<li>X_OK: si el fichero se puede ejecutar</li>
+				</ul>
+				<a href="#ejercicio-2" id="ejercicio-2" style="color: inherit; text-decoration: none;">
+					<h1>Ejercicio 2</h1>
+				</a>
+				<a href="#funcionalidad-1" id="funcionalidad-1" style="color: inherit; text-decoration: none;">
+					<h2>Funcionalidad</h2>
+				</a>
+				<p>Se requiere una aplicación que proporcione información sobre el número de líneas, palabras o caracteres que contiene un fichero de texto. Este se debe realizar de dos formas diferentes, haciendo uso del metodo pipe y sin hacer uso del metodo pipe.</p>
+				<a href="#codigo-1" id="codigo-1" style="color: inherit; text-decoration: none;">
+					<h2>Codigo</h2>
+				</a>
+				<p>Para realizar esta aplicación vamos a crear dos funciones para cada una de las formas. Comenzaremos con la funcion que hace uso del metodo pipe, este deberá tener como parametros el fichero que se desea analizar en string y un boolean para cada posible opcion.</p>
+				<pre><code><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #001080">file</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">optionlines</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">, </span><span style="color: #001080">optionchar</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">, </span><span style="color: #001080">optionwords</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000">): </span><span style="color: #267F99">void</span><span style="color: #000000"> {</span>
+</code></pre>
+				<p>Primero debemos filtrar los errores de acceso al fichero haciendo uso de <em>fs.access</em>.</p>
+				<pre><code><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">access</span><span style="color: #000000">(</span><span style="color: #001080">file</span><span style="color: #000000">, </span><span style="color: #001080">constants</span><span style="color: #000000">.</span><span style="color: #0070C1">F_OK</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> not exist`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #795E26">exit</span><span style="color: #000000">(-</span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #000000">  } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> exist`</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Almacenando en wc el contenido del fichero y almacenamos en Output la información del proceso wc</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">wc</span><span style="color: #000000"> = </span><span style="color: #795E26">spawn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;wc&#039;</span><span style="color: #000000">, [</span><span style="color: #001080">file</span><span style="color: #000000">]);</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">Output</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #001080">wc</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;data&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">piece</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> (</span><span style="color: #001080">Output</span><span style="color: #000000"> += </span><span style="color: #001080">piece</span><span style="color: #000000">));</span>
+</code></pre>
+				<p>Por último, dividiremos en un array la información del proceso anteriormente extraida para usarla dependiendo de las opciones pasadas, redirigimos con un pipe la salida del <em>echo</em> hacia la salida del proceso, mostrando los resultados por consola.</p>
+				<pre><code><span style="color: #001080">wc</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;close&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">outPutArray</span><span style="color: #000000"> = </span><span style="color: #001080">Output</span><span style="color: #000000">.</span><span style="color: #795E26">split</span><span style="color: #000000">(</span><span style="color: #811F3F">/\s</span><span style="color: #000000">+</span><span style="color: #811F3F">/</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionlines</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">echo</span><span style="color: #000000"> = </span><span style="color: #795E26">spawn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;echo&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #795E26">parseInt</span><span style="color: #000000FF">(</span><span style="color: #001080">outPutArray</span><span style="color: #000000FF">[</span><span style="color: #098658">1</span><span style="color: #000000FF">])</span><span style="color: #000000">+</span><span style="color: #098658">1</span><span style="color: #0000FF">}</span><span style="color: #A31515"> lines</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">]);</span>
+<span style="color: #000000">    </span><span style="color: #001080">echo</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionchar</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">echo</span><span style="color: #000000"> = </span><span style="color: #795E26">spawn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;echo&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #001080">outPutArray</span><span style="color: #000000FF">[</span><span style="color: #098658">3</span><span style="color: #000000FF">]</span><span style="color: #0000FF">}</span><span style="color: #A31515"> characters</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">]);</span>
+<span style="color: #000000">    </span><span style="color: #001080">echo</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionwords</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">echo</span><span style="color: #000000"> = </span><span style="color: #795E26">spawn</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;echo&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #001080">outPutArray</span><span style="color: #000000FF">[</span><span style="color: #098658">2</span><span style="color: #000000FF">]</span><span style="color: #0000FF">}</span><span style="color: #A31515"> words</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">]);</span>
+<span style="color: #000000">    </span><span style="color: #001080">echo</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">.</span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">stdout</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>Para la forma sin hacer uso de pipe, crearemos otra función con los mismos parametros y filtrando los errores de la misma forma. Lo que cambia es a la hora de comprobar los parametros pedidos. </p>
+				<p>En este caso no haremos uso de <em>pipe</em>, sino que almacenaremos la información en una variable y la mostramos una vez finalizado la comprobación de las opciones pasadas.</p>
+				<pre><code><span style="color: #001080">wc</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;close&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">OutputArray</span><span style="color: #000000"> = </span><span style="color: #001080">Output</span><span style="color: #000000">.</span><span style="color: #795E26">split</span><span style="color: #000000">(</span><span style="color: #811F3F">/\s</span><span style="color: #000000">+</span><span style="color: #811F3F">/</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">result</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionlines</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000"> += </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #795E26">parseInt</span><span style="color: #000000FF">(</span><span style="color: #001080">OutputArray</span><span style="color: #000000FF">[</span><span style="color: #098658">1</span><span style="color: #000000FF">])</span><span style="color: #000000">+</span><span style="color: #098658">1</span><span style="color: #0000FF">}</span><span style="color: #A31515"> lines</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionchar</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000"> += </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #001080">OutputArray</span><span style="color: #000000FF">[</span><span style="color: #098658">3</span><span style="color: #000000FF">]</span><span style="color: #0000FF">}</span><span style="color: #A31515"> characters</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">optionwords</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000"> += </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has </span><span style="color: #0000FF">${</span><span style="color: #001080">OutputArray</span><span style="color: #000000FF">[</span><span style="color: #098658">2</span><span style="color: #000000FF">]</span><span style="color: #0000FF">}</span><span style="color: #A31515"> words</span><span style="color: #EE0000">\n</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>Solo queda hacer uso del modulo <strong>yargs</strong> para implementarlo. Este se ejecutara con el comando <em>get</em> y tendra los mismos parametros que las funciones ademas de un parametro mas para saber en que modo se desea ejecutar.</p>
+				<pre><code><span style="color: #001080">yargs</span><span style="color: #000000">.</span><span style="color: #795E26">command</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">command:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;get&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Information&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">builder:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">file:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;file&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">pipe:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Use of pipes&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">optionlines:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Options command lines&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">optionchar:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Options command characters&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">optionwords:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Options command words&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+</code></pre>
+				<p>Para saber que función ejecutar solo será necesario comprobar el parametro <em>pipe</em>, pero antes debemos comprobar que los parametros son correctos.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">file</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">pipe</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000"> &amp;&amp;</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionlines</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionchar</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000"> &amp;&amp;</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionwords</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;boolean&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">pipe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">pipe</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">file</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionlines</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionchar</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionwords</span><span style="color: #000000">);</span>
+<span style="color: #000000">    } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">noPipe</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">file</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionlines</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionchar</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">optionwords</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<a href="#ejercicio-3" id="ejercicio-3" style="color: inherit; text-decoration: none;">
+					<h1>Ejercicio 3</h1>
+				</a>
+				<a href="#funcionalidad-2" id="funcionalidad-2" style="color: inherit; text-decoration: none;">
+					<h2>Funcionalidad</h2>
+				</a>
+				<p>Se nos pide realizar un programa que a partir de la practica 8 realizada anteriormente (aplicacion de gestion de notas), desarrollas una aplicación que reciba un usuario de la aplicación de notas y ña ruta donde se encuentran sus notas. Esta deberá controlar los cambios realizados sobre todo el directorio especificado al mismo tiempo que el usuario interactua con la aplicación de procesamiento de notas.</p>
+				<a href="#codigo-2" id="codigo-2" style="color: inherit; text-decoration: none;">
+					<h2>Codigo</h2>
+				</a>
+				<p>Para realizar esto vamos a necesitar una función que usaremos para comprobar los cambios. Esta recibirá por parametro dos strings, uno para el nombre del usuario y otro para la ruta de las notas del usuario.</p>
+				<pre><code><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">watcher</span><span style="color: #000000">(</span><span style="color: #001080">user</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">route</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) {</span>
+</code></pre>
+				<p>Relizamos la comprobación de la ruta.</p>
+				<pre><code><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">access</span><span style="color: #000000">(</span><span style="color: #001080">route</span><span style="color: #000000">, </span><span style="color: #001080">constants</span><span style="color: #000000">.</span><span style="color: #0070C1">F_OK</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">route</span><span style="color: #0000FF">}</span><span style="color: #A31515"> not exist`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #795E26">exit</span><span style="color: #000000">(-</span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #000000">  } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">route</span><span style="color: #0000FF">}</span><span style="color: #A31515"> exist`</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Y también la comprobación del usuario, usando <em>personalRoute</em> que tiene la ruta pasada añadiendo el usuario.</p>
+				<pre><code><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">access</span><span style="color: #000000">(</span><span style="color: #001080">personalRoute</span><span style="color: #000000">, </span><span style="color: #001080">constants</span><span style="color: #000000">.</span><span style="color: #0070C1">F_OK</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">user</span><span style="color: #0000FF">}</span><span style="color: #A31515"> not exist`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #795E26">exit</span><span style="color: #000000">(-</span><span style="color: #098658">1</span><span style="color: #000000">);</span>
+<span style="color: #000000">  } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">user</span><span style="color: #0000FF">}</span><span style="color: #A31515"> exist`</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Hacemos uso de <em>watch</em> para comprobar los cambios que se van realizando en la ruta del usuario. Y comprobamos con <em>watcher.on</em> el tipo de cambio que se realiza para mostrar el mensaje en la consola.</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">watcher</span><span style="color: #000000"> = </span><span style="color: #001080">chokidar</span><span style="color: #000000">.</span><span style="color: #795E26">watch</span><span style="color: #000000">(</span><span style="color: #001080">personalRoute</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;add&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">file</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> ( </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">existsSync</span><span style="color: #000000">(</span><span style="color: #001080">file</span><span style="color: #000000">)) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has been added!`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;change&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">file</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> ( </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">existsSync</span><span style="color: #000000">(</span><span style="color: #001080">file</span><span style="color: #000000">)) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has been changed!`</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">watcher</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;unlink&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">file</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">file</span><span style="color: #0000FF">}</span><span style="color: #A31515"> has been deleted!`</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
+</code></pre>
+				<p>Por último solo queda hacer uso del modulo yargs para pedir los dos parametros y ejecutar la funcion cuando estos sean correctos, pasando el usuario y la ruta. </p>
+				<pre><code><span style="color: #001080">yargs</span><span style="color: #000000">.</span><span style="color: #795E26">command</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">command:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;watch&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Watch the notes&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">builder:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;user&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">route:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Route&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">user</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">route</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">watcher</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">user</span><span style="color: #000000">, </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">route</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#ejercicio-4" id="ejercicio-4" style="color: inherit; text-decoration: none;">
+					<h1>Ejercicio 4</h1>
+				</a>
+				<a href="#funcionalidad-3" id="funcionalidad-3" style="color: inherit; text-decoration: none;">
+					<h2>Funcionalidad</h2>
+				</a>
+				<p>Se pide realizar una aplicacion que permita hacer de wrapper de los distintos comando empleados en Linux para manejar los ficheros y directorios. Se debe poder realizar:</p>
+				<ul>
+					<li>Mostrar si es directorio o fichero dada una ruta.</li>
+					<li>Crear un nuevo directorio a partir de una nueva ruta.</li>
+					<li>Listar los ficheros dentro de un directorio.</li>
+					<li>Mostrar el contenido de un fichero.</li>
+					<li>Borrar ficheros y directorios.</li>
+					<li>Mover y copiar ficheros y directorios de una ruta a otra.</li>
+				</ul>
+				<a href="#codigo-3" id="codigo-3" style="color: inherit; text-decoration: none;">
+					<h2>Codigo</h2>
+				</a>
+				<p>Para realizar esta aplcación vamos a crear un comando para cada una de las posibles ejecuciones haciendo uso del modulo <em>yargs</em>. </p>
+				<ul>
+					<li><strong>TYPE</strong></li>
+				</ul>
+				<p>Comenzamos con el <em>type</em> que muestra si es un fichero o un directorio. Para esta ejecución solo será necesario una ruta.</p>
+				<pre><code><span style="color: #001080">yargs</span><span style="color: #000000">.</span><span style="color: #795E26">command</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">command:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;type&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;show if a route is a file or a directory&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">builder:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">path:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;path&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+</code></pre>
+				<p>Ahora comprobamos que la ruta sea un string y que este existe haciendo uso de <em>fs.lstat</em>. Una vez comprobado, usamos el metodo <em>.isFile()</em> para ver si es un fichero y mostrar el mensaje, en caso contrario mostrariamos que es un directorio.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">lstat</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">, </span><span style="color: #001080">stats</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">          </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Path not exist&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">        } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">stats</span><span style="color: #000000">.</span><span style="color: #795E26">isFile</span><span style="color: #000000">()) {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515"> is a File`</span><span style="color: #000000">);</span>
+<span style="color: #000000">          } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515"> is a Directory`</span><span style="color: #000000">);</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      });</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  },</span>
+</code></pre>
+				<ul>
+					<li><strong>MKDIR</strong></li>
+				</ul>
+				<p>Para hacer este comando vamos a pedir de la misma forma la ruta para crear el directorio. Este debera crear un nuevo directorio en la ruta especificada.</p>
+				<p>Hacemos uso de <em>fs.mkdir</em> para crear el directorio y comprobamos que no ha ocurrido ningun error.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">mkdir</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, {</span><span style="color: #001080">recursive:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">}, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Error with the add&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<ul>
+					<li><strong>LIST</strong></li>
+				</ul>
+				<p>Para hacer este comando debemos pedir la ruta de la misma forma que anteriormente. Deberemos mostrar un listado de los ficheros de un directorio.</p>
+				<p>Primero comprobamos que existe el directorio que se ha pasado haciendo uso de <em>fs.readdir</em>, en caso de no existir error tendriamos en <em>files</em> los ficheros del directorio. Seguidamente mostramos el directorio que se ha pasado y mostramos cada uno de los ficheros.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">readdir</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">, </span><span style="color: #001080">files</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515"> not exit`</span><span style="color: #000000">);</span>
+<span style="color: #000000">      } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">: `</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">files</span><span style="color: #000000">.</span><span style="color: #795E26">forEach</span><span style="color: #000000">((</span><span style="color: #001080">file</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">file</span><span style="color: #000000">);</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<ul>
+					<li><strong>CAT</strong></li>
+				</ul>
+				<p>Para hacer este comando debemos pedir la ruta de la misma forma que los comando anteriores. Este deberá mostrar el contenido de un fichero que se le pasa.</p>
+				<p>Hacemos uso de <em>fs.readFile</em>, para comprobar que no existe error con la ruta. Si no existe problema con la ruta mostramos <em>data</em>, que almacena el contenido del fichero en un tipo Buffer, solo debemos tranformarlo a string.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">readFile</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">, </span><span style="color: #001080">data</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Cant show the file`</span><span style="color: #000000">);</span>
+<span style="color: #000000">      } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">());</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<ul>
+					<li><strong>RM</strong></li>
+				</ul>
+				<p>Para hacer este comando debemos pedir la ruta de la misma forma que los comandos anteriores. Este deberá eliminar el directorio o fichero que se le pase.</p>
+				<p>Debemos comprobar que la ruta es valida usando <em>fs.lstat</em>, usando <em>stats.isFile()</em> podemos comprobar si es un fichero, en caso de que la ruta dirija a un fichero usaremos <em>fs.rm</em> para eliminar el fichero de la ruta comprobando que no exista error. En caso de que no sea un fichero, será un directorio por lo que debemos usar <em>rimraf</em> para que lo elimine recursivamente, comprobando que no suceda ningun error.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">lstat</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">, </span><span style="color: #001080">stats</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Path not exit&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">stats</span><span style="color: #000000">.</span><span style="color: #795E26">isFile</span><span style="color: #000000">()) {</span>
+<span style="color: #000000">          </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">rm</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">              </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Cant delete the file`</span><span style="color: #000000">);</span>
+<span style="color: #000000">            } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">              </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`File </span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515"> deleted`</span><span style="color: #000000">);</span>
+<span style="color: #000000">            }</span>
+<span style="color: #000000">          });</span>
+<span style="color: #000000">        } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #795E26">rimraf</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">              </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Cant delete the directory`</span><span style="color: #000000">);</span>
+<span style="color: #000000">            } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">              </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">`Directory </span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">path</span><span style="color: #0000FF">}</span><span style="color: #A31515"> deleted`</span><span style="color: #000000">);</span>
+<span style="color: #000000">            }</span>
+<span style="color: #000000">          });</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<ul>
+					<li><strong>MV</strong></li>
+				</ul>
+				<p>Para hacer este comando deberemos pedir la ruta del fichero o directorio que queremos mover y la ruta a la que lo queremos mover.</p>
+				<pre><code><span style="color: #001080">yargs</span><span style="color: #000000">.</span><span style="color: #795E26">command</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">command:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;mv&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Move a file or a ditectory to another newpath&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">builder:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">Path:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Path origin&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    </span><span style="color: #001080">newPath:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">describe:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Path destination&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">demandOption:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+</code></pre>
+				<p>Para moverlo, hacemos uso de <em>fsExtra.move</em> pasandole la ruta en la que se encuentra y la ruta destino. Y comprobamos que no surja ningun problema.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">Path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">newPath</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fsExtra</span><span style="color: #000000">.</span><span style="color: #795E26">move</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">Path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">newPath</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Cant move&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Move success!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<ul>
+					<li><strong>CP</strong></li>
+				</ul>
+				<p>Para hacer este comando deberemos pedir los parametros de la misma forma que con el MV, una ruta actual y la ruta destino. Se copiará el directorio o fichero de la ruta pasada a la ruta destino.</p>
+				<p>Para hacer la copia, se realiza de la misma forma que al moverlo, cambiando <em>fsExtra.move</em> por <em>fsExtra.copy</em>. Padamos la ruta en la que se encuentra y la ruta a la que queremos copiarlo, todo esto manejando el caso de que ocurra algun error.</p>
+				<pre><code><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #001080">argv</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">Path</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">argv</span><span style="color: #000000">.</span><span style="color: #001080">newPath</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;string&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #001080">fsExtra</span><span style="color: #000000">.</span><span style="color: #795E26">copy</span><span style="color: #000000">(</span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">Path</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">argv</span><span style="color: #000000FF">.</span><span style="color: #001080">newPath</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Cant copy&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Copy Success!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">},</span>
+</code></pre>
+				<p>Con esto ya tendriamos todos los comandos funcionales.</p>
+				<a href="#conclusion" id="conclusion" style="color: inherit; text-decoration: none;">
+					<h1>Conclusion</h1>
+				</a>
+				<p>Con la realización del ejercicio propuesto en esta práctica se ha podido profundizar en las diferentes funcionalidades que tienen las APIs DE Node.js, teniendo diversas formas de combinarlos para una mejor implementacion facilitando muchas tareas. Cada uno de estas funcionalidades tiene diferentes situaciones en las que nos puede ayudar, por lo que se debe conocer los diferentes momentos en los que se debe utilizar para agilizar el trabajo.</p>
+				<a href="#bibliografia" id="bibliografia" style="color: inherit; text-decoration: none;">
+					<h1>Bibliografia</h1>
+				</a>
+				<ul>
+					<li><a href="https://www.npmjs.com/package/yargs">Yargs</a></li>
+					<li><a href="https://nodejs.org/api/fs.html">Node file system</a></li>
+					<li><a href="https://chromium.googlesource.com/infra/third_party/npm_modules/+/e7396f39cd50de4419362fc2bc48360cb85ce555/node_modules/karma/node_modules/chokidar/README.md">Chokidar</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/ejercicio1_ejemplo.html">ejercicio1/ejemplo</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/ejercicio2_app.html">ejercicio2/app</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/ejercicio3_watch_app.html">ejercicio3/watch-<wbr>app</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/ejercicio4_wrapper.html">ejercicio4/wrapper</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/notes_note_app.html">notes/note-<wbr>app</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/notes_notes.html">notes/notes</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
